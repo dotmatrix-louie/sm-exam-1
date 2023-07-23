@@ -16,7 +16,7 @@ http://localhost:8080/send-email
 json request format:
 
 {
-    "to": "zarathustralf@gmail.com",
+    "to": "<sampleemail@sample.com>",
     "subject": "My Subject",
     "body": "this is a test"
 }
