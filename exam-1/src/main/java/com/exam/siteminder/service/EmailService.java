@@ -44,10 +44,10 @@ public class EmailService {
 	@Retryable(maxAttempts = 2, value = Exception.class, backoff = @Backoff(delay = 1000))
 	public ResponseEntity<Object> sendEmailWithFailover(String to, String subject, String body) throws IOException {
 		try {
-			return sendEmailMailgun(to, subject, body);
+			return sendEmailSendgrid(to, subject, body);
 		} catch (Exception e) {
 			// Primary provider failed, retry using the backup provider
-			return sendEmailSendgrid(to, subject, body);
+			return sendEmailMailgun(to, subject, body);
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class EmailService {
 			request.setBody(mail.build());
 			Response response = sg.api(request);
 
-			return ResponseEntity.status(response.getStatusCode()).body(response.getStatusCode());
+			return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
 		} catch (IOException ex) {
 			throw ex;
 		}
