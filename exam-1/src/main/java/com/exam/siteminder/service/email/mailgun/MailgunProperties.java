@@ -3,22 +3,13 @@ package com.exam.siteminder.service.email.mailgun;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import com.exam.siteminder.service.email.EmailProperties;
+
 @Component
 @ConfigurationProperties(prefix="email.services.mailgun")
-public class MailgunProperties {
-	private String apikey;
+public class MailgunProperties extends EmailProperties	{
 
 	private String domain;
-	
-	private String sender;
-
-	public String getApikey() {
-		return apikey;
-	}
-
-	public void setApikey(String apikey) {
-		this.apikey = apikey;
-	}
 
 	public String getDomain() {
 		return domain;
@@ -27,15 +18,5 @@ public class MailgunProperties {
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}
-
-	public String getSender() {
-		return sender;
-	}
-
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
 	
-	
-
 }
